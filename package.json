@@ -1,0 +1,20 @@
+{
+  "name": "@pomle/use-local-storage",
+  "source": "src/use-local-storage.ts",
+  "main": "dist/use-local-storage.js",
+  "exports": "./dist/use-local-storage.modern.js",
+  "module": "dist/use-local-storage.module.js",
+  "unpkg": "dist/use-local-storage.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "microbundle": "^0.13.0",
+    "ts-jest": "^26.5.1",
+    "typescript": "^4.1.5"
+  }
+}
