@@ -1,5 +1,6 @@
 {
   "name": "@pomle/use-local-storage",
+  "version": "0.1.0",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
