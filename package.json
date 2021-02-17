@@ -1,15 +1,15 @@
 {
   "name": "@pomle/use-local-storage",
   "license": "MIT",
-  "source": "src/use-local-storage.ts",
-  "main": "dist/use-local-storage.js",
-  "exports": "./dist/use-local-storage.modern.js",
-  "module": "dist/use-local-storage.module.js",
-  "unpkg": "dist/use-local-storage.umd.js",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "exports": "./dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
-    "build": "microbundle",
+    "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch",
-    "test": "jest"
+    "test": "jest src/"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^5.0.3",

@@ -12,11 +12,13 @@ const fail = () => {
 
 export const Context = createContext<SharedStateValue>([{}, fail]);
 
+const EMPTY = Object.create(null);
+
 interface SharedStateContextProps {
   children?: React.ReactNode;
 }
 
 export const SharedStateContext = ({ children }: SharedStateContextProps) => {
-  const state = useState<State>({});
+  const state = useState<State>(EMPTY);
   return <Context.Provider value={state}>{children}</Context.Provider>;
 };
