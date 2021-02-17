@@ -4,14 +4,18 @@ import { debounce } from "../debounce";
 import { ensureObject } from "../conversion";
 import { useSharedState } from "./useSharedState";
 
+type StorageValues = {
+  [key: string]: StorageValues | string | number | boolean | undefined;
+};
+
 const SERIALIZATION_DEBOUNCE = 1000;
 
-export function useStorage<T>(
+export function useStorage<T extends StorageValues>(
   namespace: string,
   defaults: T
-): [T, (value: T) => void] {
+): [T, (value: Partial<T>) => void] {
   const storage = useMemo(() => {
-    const storage = createStorage<T>(namespace);
+    const storage = createStorage<Partial<T>>(namespace);
     const storedValue = storage.get();
     return {
       initial:
@@ -22,10 +26,13 @@ export function useStorage<T>(
     };
   }, [namespace]);
 
-  const [state, setState] = useSharedState<T>(namespace, storage.initial);
+  const [state, setState] = useSharedState<Partial<T>>(
+    namespace,
+    storage.initial
+  );
 
   const updateValues = useCallback(
-    (newValues: T) => {
+    (newValues: Partial<T>) => {
       const nextValues = { ...state, ...newValues };
       setState(nextValues);
       storage.store(nextValues);
