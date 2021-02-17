@@ -23,12 +23,12 @@ describe("useStorage", () => {
     jest.clearAllTimers();
   });
 
-  type Shape = Partial<{
+  type Shape = {
     amount: number;
     name: string;
     optional?: string;
     untouched: string;
-  }>;
+  };
 
   const DEFAULT: Shape = {
     amount: 1337,
@@ -40,7 +40,7 @@ describe("useStorage", () => {
 
   let hook: RenderHookResult<
     { namespace: string; defaults: Shape },
-    [Shape, (value: Shape) => void]
+    [Shape, (value: Partial<Shape>) => void]
   >;
 
   [
@@ -69,16 +69,16 @@ describe("useStorage", () => {
 
   describe("when mounted", () => {
     beforeEach(() => {
-      hook = renderHook<
-        { namespace: string; defaults: Shape },
-        [Shape, (value: Shape) => void]
-      >(({ namespace, defaults }) => useStorage<Shape>(namespace, defaults), {
-        wrapper: SharedStateContext,
-        initialProps: {
-          namespace: NAMESPACE,
-          defaults: DEFAULT,
-        },
-      });
+      hook = renderHook(
+        ({ namespace, defaults }) => useStorage<Shape>(namespace, defaults),
+        {
+          wrapper: SharedStateContext,
+          initialProps: {
+            namespace: NAMESPACE,
+            defaults: DEFAULT,
+          },
+        }
+      );
     });
 
     it("returns default value unless stored", () => {
