@@ -94,6 +94,16 @@ describe("useStorage", () => {
       expect(hook.result.current[0].name).toEqual("");
     });
 
+    it("returns referentially stable set fn", () => {
+      const setFn = hook.result.current[1];
+
+      act(() => {
+        hook.result.current[1]({ amount: 0, name: "" });
+      });
+
+      expect(hook.result.current[1]).toBe(setFn);
+    });
+
     describe("when values stored", () => {
       beforeEach(() => {
         act(() => {
