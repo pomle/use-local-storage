@@ -33,11 +33,13 @@ export function useStorage<T extends StorageValues>(
 
   const updateValues = useCallback(
     (newValues: Partial<T>) => {
-      const nextValues = { ...state, ...newValues };
-      setState(nextValues);
-      storage.store(nextValues);
+      setState((state) => {
+        const nextValues = { ...state, ...newValues };
+        storage.store(nextValues);
+        return nextValues;
+      });
     },
-    [setState, state, storage]
+    [setState, storage]
   );
 
   const values = useMemo(() => {
