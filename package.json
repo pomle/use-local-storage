@@ -1,12 +1,10 @@
 {
   "name": "@pomle/use-local-storage",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "exports": "./dist/index.modern.js",
   "module": "dist/index.module.js",
-  "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch",
@@ -17,7 +15,7 @@
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.2",
     "jest": "^26.6.3",
-    "microbundle": "^0.13.0",
+    "microbundle": "^0.15.1",
     "react": "^17.0.1",
     "react-test-renderer": "^17.0.1",
     "ts-jest": "^26.5.1",
